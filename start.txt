@@ -1,0 +1,17 @@
+pip install django
+
+django-admin startproject mysite # 프로젝트 폴더 생성
+
+cd ./mysite # 프로젝트 폴더로 이동
+
+# 모델 배울 때 나옴
+python manage.py makemigrations (app_name)
+python manage.py migrate
+
+python manage.py runserver # 서버 실행
+
+cf) MTV : Model(데이터베이스) Template(보이는 부분) View(명령하는 부분)
+
+python manage.py startapp polls # 폴더 생성
+# Django에서는 application 단위로 웹페이지를 개발함
+
