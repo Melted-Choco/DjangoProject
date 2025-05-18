@@ -3,9 +3,21 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
+from django.template import loader
+
+from .models import Question
 
 def index(request):
-    return HttpResponse("Hello, World. You're at the polls index.")
+    # Receive data in the latest order based on pub_date
+    latest_question_list = Question.objects.order_by('-pub_date')[:5] # only Top 5
+    # Load 'index.html'
+    template = loader.get_template('polls/index.html')
+    # Save the Question data in the 'context' dictionary
+    context = {
+        'latest_question_list' : latest_question_list,
+    }
+    # Send the content of 'context'
+    return HttpResponse(template.render(context, request))
 
 # Show question_text
 def detail(request, question_id):
