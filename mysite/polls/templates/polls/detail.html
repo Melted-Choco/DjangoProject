@@ -5,8 +5,10 @@
 {% endif %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
+{% comment %} csrf_token : Security features provided by Django {% endcomment %}
 {% csrf_token %}
 {% for choice in question.choice_set.all %}
+    {% comment %} forloop.counter : how many times loop it {% endcomment %}
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
     <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
     <br>
