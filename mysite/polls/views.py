@@ -10,14 +10,13 @@ from .models import Question
 def index(request):
     # Receive data in the latest order based on pub_date
     latest_question_list = Question.objects.order_by('-pub_date')[:5] # only Top 5
-    # Load 'index.html'
-    template = loader.get_template('polls/index.html')
     # Save the Question data in the 'context' dictionary
     context = {
         'latest_question_list' : latest_question_list,
     }
-    # Send the content of 'context'
-    return HttpResponse(template.render(context, request))
+    # Render() : Wrapping function
+    # Load 'index.html' & Send the content of 'context'
+    return render(request, 'polls/index.html', context)
 
 # Show question_text
 def detail(request, question_id):
