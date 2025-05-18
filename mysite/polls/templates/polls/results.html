@@ -3,7 +3,11 @@
 <ul>
 {% for choice in question.choice_set.all %}
     {% comment %} |pluralize : pluralization(복수화, s를 붙여줌) {% endcomment %}
+    {% if choice.votes == 0 %}
+    <li>{{ choice.choice_text }} -- {{choice.votes}} vote</li>
+    {% else %}
     <li>{{ choice.choice_text }} -- {{choice.votes}} vote{{ choice.votes|pluralize }}</li>
+    {% endif %}
 {% endfor %}
 </ul>
 
